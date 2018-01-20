@@ -184,7 +184,7 @@ public class ControladorQytetet {
         if(jugador.getSaldo() < 0){
             
             vista.mostrar("Fin del juego");
-            HashMap<String, Integer> ranking = juego.obtenerRanking();
+            HashMap<Integer, String> ranking = juego.obtenerRanking();
             System.out.println(ranking.toString());
             
         }

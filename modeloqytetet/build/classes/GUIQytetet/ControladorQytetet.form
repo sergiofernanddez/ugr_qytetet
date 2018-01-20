@@ -134,10 +134,11 @@
     </Component>
     <Component class="java.awt.Button" name="jbSiguienteJugador">
       <Properties>
+        <Property name="actionCommand" type="java.lang.String" value="Siguiente Jugador "/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="12" style="1"/>
         </Property>
-        <Property name="label" type="java.lang.String" value="Suigiente Jugador&#xa;"/>
+        <Property name="label" type="java.lang.String" value="Siguiente Jugador "/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbSiguienteJugadorActionPerformed"/>

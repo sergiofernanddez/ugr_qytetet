@@ -5,7 +5,6 @@
  */
 package ModeloQytetet;
 
-import GUIQytetet.Dado;
 import java.util.*;
 import java.util.HashMap;
 
@@ -26,8 +25,7 @@ public class Qytetet {
     Tablero tablero;
     ArrayList<Sorpresa> mazo;
     static Qytetet instance = new Qytetet();
-    Dado dado = GUIQytetet.Dado.getInstance();
-    
+  
     
     //Constructor
     public Qytetet(){
@@ -197,10 +195,9 @@ public class Qytetet {
         
         if(metodo == MetodoSalirCarcel.TIRANDODADO){
             
-            int valorDado = dado.nextNumber();
-            System.out.println("Ha salido "+valorDado);
+            int valorDado = GUIQytetet.Dado.getInstance().nextNumber();
             
-            if(valorDado > 5)
+            if(valorDado >= 5)
                 libre = true;    
         }
         
@@ -218,7 +215,7 @@ public class Qytetet {
     
     public boolean jugar(){
     
-        int valorDado = dado.nextNumber();
+        int valorDado = GUIQytetet.Dado.getInstance().nextNumber();
         Casilla casillaPosicion = jugadorActual.getCasillaActual();
         Casilla nuevaCasilla = tablero.obtenerNuevaCasilla(casillaPosicion, valorDado);
         boolean tienePropietario = jugadorActual.actualizarPosicionCasilla(nuevaCasilla);
@@ -236,14 +233,13 @@ public class Qytetet {
         return tienePropietario;
     }
     
-    public HashMap<String, Integer> obtenerRanking(){
+    public HashMap<Integer, String> obtenerRanking(){
     
-        HashMap<String, Integer> ranking = new HashMap();
+        HashMap<Integer, String> ranking = new HashMap();
         
-        jugadores.forEach((j) -> {
-            int capital = j.obtenerCapital();
-            ranking.put(j.getNombre(), capital);
-        });
+         for(Integer i=0; i<jugadores.size(); i++){
+             ranking.put(i, jugadores.get(i).getNombre()+" "+jugadores.get(i).getSaldo());
+         }
         
         return ranking;
     }

@@ -67,7 +67,7 @@ private int seleccionMenu(Map<Integer,String> menu)
             String texto = fila.getValue();
             this.mostrar(numero + " : " + texto);  // n�mero de opci�n y texto
       }
-      this.mostrar("\n Elige una opci�n: ");
+      this.mostrar("\n Elige una opcion: ");
       lectura = in.nextLine();  //lectura de teclado
       valido=this.comprobarOpcion(lectura, 0, menu.size()-1); //m�todo para comprobar la elecci�n correcta
     } while (!valido);
@@ -79,7 +79,7 @@ public ArrayList<String> obtenerNombreJugadores() { //m�todo para pedir el nom
     String lectura;
     ArrayList<String> nombres = new ArrayList();
     do{ //repetir mientras que el usuario no escriba un n�mero correcto 
-        this.mostrar("Escribe el n�mero de jugadores: (de 2 a 4):");
+        this.mostrar("Escribe el numero de jugadores: (de 2 a 4):");
         lectura = in.nextLine();  //lectura de teclado
         valido=this.comprobarOpcion(lectura, 2, 4); //m�todo para comprobar la elecci�n correcta
     }while (!valido);

@@ -112,7 +112,7 @@ public class Jugador {
         return chorizo;
     }
     
-    protected void pagarImpuestos(int cantidad){
+    public void pagarImpuestos(int cantidad){
         this.modificarSaldo(-cantidad);
     }
     
