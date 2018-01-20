@@ -118,7 +118,7 @@ public class Calle extends Casilla{
         return titulo.getHipotecada();
     }
     
-    boolean tengoPropietario(){
+    public boolean tengoPropietario(){
        return titulo.tengoPropietario() == true;
     }
     

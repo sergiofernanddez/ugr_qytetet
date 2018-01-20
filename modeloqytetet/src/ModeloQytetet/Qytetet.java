@@ -80,7 +80,9 @@ public class Qytetet {
     
     boolean tienePropietario = false;
     
-    if( null != cartaActual.getTipo())switch (cartaActual.getTipo()) {
+    if( null != cartaActual.getTipo()){
+        
+        switch (cartaActual.getTipo()) {
            
         case PAGARCOBRAR:
                 jugadorActual.modificarSaldo(cartaActual.getValor());
@@ -89,11 +91,12 @@ public class Qytetet {
         case IRACASILLA:
                 boolean esCarcel = tablero.esCasillaCarcel(cartaActual.getValor());
                 if(esCarcel){
-                    
                     this.encarcelarJugador();
-                }       
-                Casilla nuevaCasilla = tablero.obtenerCasillaNumero(cartaActual.getValor());
-                tienePropietario = jugadorActual.actualizarPosicionCasilla(nuevaCasilla);
+                }
+                else{
+                    Casilla nuevaCasilla = tablero.obtenerCasillaNumero(cartaActual.getValor());
+                    tienePropietario = jugadorActual.actualizarPosicionCasilla(nuevaCasilla);
+                }
                 break;
         
         case PORCASAHOTEL:
@@ -101,9 +104,9 @@ public class Qytetet {
                 break;
         
         case PORJUGADOR:
-                for(int i=0; i<MAX_JUGADORES; i++){
+                for(int i=0; i<jugadores.size(); i++){
                     
-                    Jugador jugador = jugadores.get(i+1);
+                    Jugador jugador = jugadores.get(i);
                     
                     if(jugador != jugadorActual){
                         
@@ -121,15 +124,14 @@ public class Qytetet {
         default:
                 break;
         }
-    
+    }
     if(cartaActual.getTipo() == TipoSorpresa.SALIRCARCEL){
         
         jugadorActual.setCartaLibertad(cartaActual);
         
-    }else{
-        mazo.add(cartaActual);
-        mazo.remove(0);
     }
+    mazo.add(cartaActual);
+    mazo.remove(0);
     return tienePropietario;
     
     }

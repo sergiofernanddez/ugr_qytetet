@@ -85,9 +85,8 @@ public class ControladorQytetet extends javax.swing.JFrame {
             }
         });
 
-        jbSiguienteJugador.setActionCommand("Siguiente Jugador ");
         jbSiguienteJugador.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jbSiguienteJugador.setLabel("Siguiente Jugador ");
+        jbSiguienteJugador.setLabel("Suigiente Jugador\n");
         jbSiguienteJugador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbSiguienteJugadorActionPerformed(evt);
@@ -224,6 +223,17 @@ public class ControladorQytetet extends javax.swing.JFrame {
         juego.aplicarSorpresa();
         
         this.actualizar(juego);
+        
+        if(juego.getCartaActual().getTipo() == TipoSorpresa.IRACASILLA){
+            if(  ((Calle)jugador.getCasillaActual()).tengoPropietario() ){
+                JOptionPane.showMessageDialog(this,"Esta casilla ya esta comprada");
+                int coste = ((Calle)casilla).cobrarAlquiler();
+                JOptionPane.showMessageDialog(this, "Le pagas "+coste+" a "+((Calle)casilla).getTitulo().getPropietario().getNombre());  
+            }
+            else{
+                this.jbComprarPropiedad.setEnabled(true);
+            }
+        }
         this.jbSiguienteJugador.setEnabled(true);
         this.jbJugar.setEnabled(false);
     }//GEN-LAST:event_jbAplicarSorpresaActionPerformed
@@ -238,7 +248,7 @@ public class ControladorQytetet extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this,"Coste: "+((Calle)casilla).getCoste()+
                         "\nSaldo final: "+juego.getJugadorActual().getSaldo());
             }
-        else
+        }else{
             JOptionPane.showMessageDialog(this,"¿De verdad pensaste que podías comprar estando a dos velas?");
             }
         this.actualizar(juego);
@@ -380,7 +390,7 @@ public class ControladorQytetet extends javax.swing.JFrame {
      }
      if(casilla.getTipo() == TipoCasilla.CARCEL){
           JOptionPane.showMessageDialog(this, "Haces una visita a la cárcel");
-         this.jbJugar.setEnabled(false);
+          this.jbJugar.setEnabled(false);
           this.jbSiguienteJugador.setEnabled(true);
      }
      if(casilla.getTipo() == TipoCasilla.IMPUESTO){
@@ -391,9 +401,8 @@ public class ControladorQytetet extends javax.swing.JFrame {
      if(casilla.getTipo() == TipoCasilla.JUEZ){
           JOptionPane.showMessageDialog(this, "Ahora si que vas a la cárcel de cabeza");
           juego.encarcelarJugador();
-          this.actualizar(juego);
           this.jbJugar.setEnabled(false);
-          this.jbSiguienteJugador.setEnabled(true);
+          this.actualizar(juego);
      }         
      if(casilla.getTipo() == TipoCasilla.CALLE){
 
@@ -406,7 +415,7 @@ public class ControladorQytetet extends javax.swing.JFrame {
          else if(((Calle)casilla).getTitulo().getPropietario() != juego.getJugadorActual() ){
              JOptionPane.showMessageDialog(this,"Esta casilla ya esta comprada");
              int coste = ((Calle)casilla).cobrarAlquiler();
-             JOptionPane.showMessageDialog(this, "Le pagas "+coste+" a "+((Calle)casilla).getTitulo().getPropietario());
+             JOptionPane.showMessageDialog(this, "Le pagas "+coste+" a "+((Calle)casilla).getTitulo().getPropietario().getNombre());
              juego.getJugadorActual().modificarSaldo(-coste);
              this.jbJugar.setEnabled(false);
              this.jbSiguienteJugador.setEnabled(true);

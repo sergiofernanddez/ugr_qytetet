@@ -26,11 +26,11 @@ public class Sorpresa {
             return descripcion;
         }
         
-        TipoSorpresa getTipo(){
+        public TipoSorpresa getTipo(){
             return tipo;
         }
         
-        int getValor(){
+        public int getValor(){
             return valor;
         }
         

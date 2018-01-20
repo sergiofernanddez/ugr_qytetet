@@ -1,5 +1,5 @@
 /*
- * Dado grï¿½fico para Qytetet
+ * Dado gráfico para Qytetet
  */
 package GUIQytetet;
 
@@ -55,8 +55,8 @@ public class Dado extends javax.swing.JDialog {
     };
   
   public int nextNumber () {
-    return nextNumber ("Puedes llamar al metodo",
-            "Pasandole 2 cadenas como parametros");
+    return nextNumber ("Puedes llamar al método",
+            "Pasándole 2 cadenas como parámetros");
     
   }
   public int nextNumber (String message1, String message2) {
