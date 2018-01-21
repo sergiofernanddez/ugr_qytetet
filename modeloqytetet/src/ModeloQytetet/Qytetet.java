@@ -312,7 +312,7 @@ public class Qytetet {
     }
     
     private void inicializarCartasSorpresa(){
-     
+            
         mazo.add(new Sorpresa("Te han pillado hackeando el banco, vas a la cárcel",
                tablero.getCarcel().getNumeroCasilla(), TipoSorpresa.IRACASILLA));
         

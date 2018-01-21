@@ -29,7 +29,9 @@ public class Calle extends Casilla{
     public String toString(){
         return "Número: "+super.getNumeroCasilla()+
                 "\nNombre: "+titulo.getNombre()+"\nCoste: "+coste+
-                "\nNº Casas: "+numCasas+"\nNº Hoteles: "+numHoteles;
+                "\nNº Casas: "+numCasas+"\nNº Hoteles: "+numHoteles+
+                "\nPrecio edificar: "+titulo.getPrecioEdificar()+
+                "\nValor hipoteca: "+titulo.getHipotecaBase()+"\n";
     }
 
     //Consultores

@@ -146,13 +146,15 @@ public class ControladorQytetet extends javax.swing.JFrame {
         
         this.jbSalirCarcelPagando.setEnabled(false);
         this.jbSalirCarcelDado.setEnabled(false);
+        this.jbJugar.setEnabled(false);
         
         if(resultado){
             JOptionPane.showMessageDialog(this, "Sales de la cárcel");
             this.jbJugar.setEnabled(true);
         }else {
-            JOptionPane.showMessageDialog(this, "NO sales de la carcel");
-            this.jbSiguienteJugador.setEnabled(true);
+            JOptionPane.showMessageDialog(this, "NO sales de la carcel. \nPasa turno");
+            juego.siguienteJugador();
+            this.actualizar(juego);
         }
         
         this.actualizar(juego);
@@ -187,9 +189,12 @@ public class ControladorQytetet extends javax.swing.JFrame {
 
     private void jbSiguienteJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSiguienteJugadorActionPerformed
         
-        if(!juego.getJugadorActual().getEncarcelado() && juego.getJugadorActual().tengoPropiedades()){
+        if(!jugador.getEncarcelado() && jugador.tengoPropiedades()){
                 this.gestionInmobiliaria();
             }
+        
+        if(jugador.getEncarcelado())
+            this.jbJugar.setEnabled(false);
         
         juego.siguienteJugador();
         this.actualizar(juego);
@@ -208,8 +213,9 @@ public class ControladorQytetet extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Sales de la cárcel");
             this.jbJugar.setEnabled(true);
         }else {
-            JOptionPane.showMessageDialog(this, "NO sales de la carcel");
-            this.jbSiguienteJugador.setEnabled(true);
+            JOptionPane.showMessageDialog(this, "NO sales de la carcel. \nPasa Turno");
+            juego.siguienteJugador();
+            this.actualizar(juego);
         }
         
         this.actualizar(juego);
@@ -224,13 +230,14 @@ public class ControladorQytetet extends javax.swing.JFrame {
         
         this.actualizar(juego);
         
-        if(juego.getCartaActual().getTipo() == TipoSorpresa.IRACASILLA){
+        if(juego.getCartaActual().getTipo() == TipoSorpresa.IRACASILLA && juego.getCartaActual().getValor() != 5){
             if(  ((Calle)jugador.getCasillaActual()).tengoPropietario() ){
                 JOptionPane.showMessageDialog(this,"Esta casilla ya esta comprada");
                 int coste = ((Calle)casilla).cobrarAlquiler();
                 JOptionPane.showMessageDialog(this, "Le pagas "+coste+" a "+((Calle)casilla).getTitulo().getPropietario().getNombre());  
             }
             else{
+                casilla = jugador.getCasillaActual();
                 this.jbComprarPropiedad.setEnabled(true);
             }
         }
@@ -402,6 +409,7 @@ public class ControladorQytetet extends javax.swing.JFrame {
           JOptionPane.showMessageDialog(this, "Ahora si que vas a la cárcel de cabeza");
           juego.encarcelarJugador();
           this.jbJugar.setEnabled(false);
+          juego.siguienteJugador();
           this.actualizar(juego);
      }         
      if(casilla.getTipo() == TipoCasilla.CALLE){
